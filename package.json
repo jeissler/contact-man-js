@@ -1,0 +1,27 @@
+{
+  "name": "contact-man-js",
+  "version": "1.0.0",
+  "main": "index.html",
+  "license": "MIT",
+
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.1.8",
+    "browser-sync": "^2.18.8",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2",
+    "webpack": "^2.2.1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "scripts": {
+    "js:compile": "webpack --watch",
+    "serve": "browser-sync start -s -f './index.html' './js'",
+    "start": "npm-run-all --parallel js:compile serve"
+  }
+}

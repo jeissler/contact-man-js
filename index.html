@@ -1,0 +1,51 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <div class="container">
+            <header>
+                <h1>Vanilla Contacts</h1>
+            </header>
+            <div class="row">
+                <section id="sidebar" class="col-12 col-md-4">
+                    <ul class="list-group">
+                        <!-- list component see main.js -->
+                    </ul>
+                </section>
+                
+                <section id="main" class="col-12 col-md-8">
+                    <h2>Enter New Contact</h2>
+                    <form>
+                        <div class="form-inline">
+                            <label class="sr-only" for="name">Name</label>
+                            <input required type="text" class="form-control mb-2 mr-2" id="name" placeholder="Jane Doe" name="name">
+
+                            <label class="sr-only" for="email">Email</label>
+                            <input required type="email" class="form-control mb-2 mr-2" id="email" placeholder="Email" name="email">
+
+                            <label class="sr-only" for="phone">Phone</label>
+                            <input required type="tel" class="form-control mb-2 mr-2" id="phone" placeholder="Phone" name="phone">
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+
+        <script src="js/bundle.js"></script>
+    </body>
+</html>
