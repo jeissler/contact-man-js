@@ -38,12 +38,14 @@ function submitNewContact(ev){
     const phone = formData.get('phone')
     
     // ie. this data would get posted back or saved to db in a real world app
-    // ie. in a real world app form data would need to be sanitized before use
+    // and form data would need to be sanitized before use
     contacts.push({ 'name': name, 'email': email, 'phone': phone })
 
     const contact = contacts[contacts.length - 1]
     updateContactList(contact)
     clearFormInputs()
+
+    console.log(contacts)
 }
 
 function clearFormInputs() {
@@ -53,14 +55,15 @@ function clearFormInputs() {
 }
 
 function removeItem() {
+    // get current node index for removal
     const name = this.parentNode.dataset.name
+    const index = contacts.indexOf(contact => { return contact.name == name })
+    
+    // remove dom node and array obj
     this.parentNode.remove()
-    contacts.length-- // TODO: use splice here
+    contacts.splice(index, 1)
 
-    for (let prop in contacts) {
-        if (contacts[prop].name === name)
-            delete contacts[prop]
-    }
+    console.log(contacts)
 }
 
 export { 

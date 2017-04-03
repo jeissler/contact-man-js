@@ -63,23 +63,11 @@
 /******/ 	__webpack_require__.p = "/js";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _contactMan = __webpack_require__(1);
-
-(0, _contactMan.buildContactList)();
-_contactMan.form.addEventListener('submit', _contactMan.submitNewContact, false);
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90,9 +78,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.form = exports.submitNewContact = exports.buildContactList = undefined;
 
-var _utils = __webpack_require__(2);
+var _utils = __webpack_require__(3);
 
-var _contacts = __webpack_require__(3);
+var _contacts = __webpack_require__(1);
 
 var root = (0, _utils._$)('#sidebar .list-group');
 var form = (0, _utils._$)('form');
@@ -149,12 +137,14 @@ function submitNewContact(ev) {
     var phone = formData.get('phone');
 
     // ie. this data would get posted back or saved to db in a real world app
-    // ie. in a real world app form data would need to be sanitized before use
+    // and form data would need to be sanitized before use
     _contacts.contacts.push({ 'name': name, 'email': email, 'phone': phone });
 
     var contact = _contacts.contacts[_contacts.contacts.length - 1];
     updateContactList(contact);
     clearFormInputs();
+
+    console.log(_contacts.contacts);
 }
 
 function clearFormInputs() {
@@ -164,13 +154,17 @@ function clearFormInputs() {
 }
 
 function removeItem() {
+    // get current node index for removal
     var name = this.parentNode.dataset.name;
-    this.parentNode.remove();
-    _contacts.contacts.length--; // TODO: use splice here
+    var index = _contacts.contacts.indexOf(function (contact) {
+        return contact.name == name;
+    });
 
-    for (var prop in _contacts.contacts) {
-        if (_contacts.contacts[prop].name === name) delete _contacts.contacts[prop];
-    }
+    // remove dom node and array obj
+    this.parentNode.remove();
+    _contacts.contacts.splice(index, 1);
+
+    console.log(_contacts.contacts);
 }
 
 exports.buildContactList = buildContactList;
@@ -178,7 +172,43 @@ exports.submitNewContact = submitNewContact;
 exports.form = form;
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+// mock initail data
+// ie. in a real-world app this data would come from an api or db
+var contacts = [{
+    'name': 'Jeremy',
+    'email': 'one@jeissler.com',
+    'phone': '888-555-2323'
+}, {
+    'name': 'Jen',
+    'email': 'jen@jen.com',
+    'phone': '888-555-2323'
+}];
+
+exports.contacts = contacts;
+
+/***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _contactMan = __webpack_require__(0);
+
+(0, _contactMan.buildContactList)();
+_contactMan.form.addEventListener('submit', _contactMan.submitNewContact, false);
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -230,30 +260,6 @@ exports._$$ = _$$;
 exports._$each = _$each;
 exports._$hasClass = _$hasClass;
 exports.ajaxLoad = ajaxLoad;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-// mock initail data
-// ie. in a real-world app this data would come from an api or db
-var contacts = [{
-    'name': 'Jeremy',
-    'email': 'one@jeissler.com',
-    'phone': '888-555-2323'
-}, {
-    'name': 'Jen',
-    'email': 'jen@jen.com',
-    'phone': '888-555-2323'
-}];
-
-exports.contacts = contacts;
 
 /***/ })
 /******/ ]);
